@@ -4,7 +4,11 @@ use std::path::Path;
 use chrono::{DateTime, TimeZone, Local};
 
 fn main() {
-    read_dir("./");
+    let result = read_dir("./");
+
+    if result.is_ok() {
+        println!("OK");
+    }
 }
 
 fn read_dir<P: AsRef<Path>>(path: P) -> io::Result<String> {
@@ -12,6 +16,7 @@ fn read_dir<P: AsRef<Path>>(path: P) -> io::Result<String> {
     for entry in entries {
         let entry = entry?;
         let metadata = entry.metadata()?;
+
         if metadata.is_dir() {} else {
             let modified = metadata.modified();
             if modified.is_err() {
