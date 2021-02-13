@@ -58,6 +58,7 @@ fn read_dir<P: AsRef<Path>>(
                 0,
             );
 
+            // KEYが存在すれば files として Vec<String> を受け取る
             if let Some(files) = map.get_mut(&datetime) {
                 files.push(entry.path().display().to_string());
             } else {
