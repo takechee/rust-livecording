@@ -17,7 +17,7 @@ fn read_dir<P: AsRef<Path>>(path: P) -> io::Result<String> {
         let entry = entry?;
         let metadata = entry.metadata()?;
 
-        if metadata.is_dir() {} else {
+        if !metadata.is_dir() {
             let modified = metadata.modified();
             if modified.is_err() {
                 continue;
